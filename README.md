@@ -2,8 +2,6 @@
 
 InfluencerIQ is a modern web application that leverages AI to provide comprehensive analysis of social media influencers. Built with Next.js 14, TypeScript, and powered by Groq's AI models, it offers real-time credibility assessment and performance metrics for influencers across major social platforms.
 
-![InfluencerIQ Dashboard](https://your-screenshot-url.com/dashboard.png)
-
 ## Features
 
 - 🤖 **AI-Powered Analysis**: Utilizes Groq's advanced AI models for deep influencer insights
