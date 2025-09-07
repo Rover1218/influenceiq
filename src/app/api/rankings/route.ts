@@ -152,7 +152,7 @@ export async function POST(req: Request) {
         console.log("Rankings API received POST data:", analysisData);
 
         if (!analysisData.name || !analysisData.platform) {
-            console.error("Missing required fields in data:", analysisData);
+            console.error("Missing required fields in data: ", analysisData);
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
