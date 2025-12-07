@@ -53,8 +53,12 @@ Please provide your response in the following JSON format:
 If you don't have specific information about this influencer, set scores to null and provide general information in the analysis fields.`;
         }
 
-        // List of available Groq models to try
-        const models = ["llama3-70b-8192", "llama2-70b-4096", "mixtral-8x7b-32768"];
+        // List of available Groq models to try (updated to latest supported models)
+        const models = [
+            "llama-3.3-70b-versatile", // Replacement for llama3-70b-8192
+            "llama-3.1-8b-instant",    // Replacement for llama3-8b-8192 and gemma2-9b-it
+            "qwen/qwen3-32b"           // Modern performant model (optional, can add more as needed)
+        ];
         let lastError: ApiError | null = null;
 
         // Try each model in sequence until one works
