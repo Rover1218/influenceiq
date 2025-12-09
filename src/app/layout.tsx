@@ -31,8 +31,6 @@ export const metadata: Metadata = {
   },
   // PWA web manifest - also from CDN
   manifest: "https://cdn.jsdelivr.net/gh/influenceriq/brand-assets@main/site.webmanifest",
-  // Theme color for browser chrome
-  themeColor: "#3B82F6",
   // Other Open Graph metadata for social sharing
   openGraph: {
     type: "website",
@@ -41,6 +39,11 @@ export const metadata: Metadata = {
     siteName: "InfluencerIQ",
     images: [{ url: "https://cdn.jsdelivr.net/gh/influenceriq/brand-assets@main/og-image.png" }],
   },
+};
+
+// Export viewport configuration separately
+export const viewport = {
+  themeColor: "#3B82F6",
 };
 
 export default function RootLayout({
@@ -62,8 +65,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {/* Add Suspense boundary for better loading states */}
-        <Suspense fallback={<div>Loading...</div>}>
-          <main className="min-h-screen bg-gray-50 pt-6">{children}</main>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="text-center">
+              <div className="inline-block rounded-full h-16 w-16 border-4 border-gray-200 border-t-blue-600 animate-spin"></div>
+              <p className="mt-4 text-gray-600 font-medium">Loading...</p>
+            </div>
+          </div>
+        }>
+          <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 pt-6 px-4">{children}</main>
         </Suspense>
       </body>
     </html>

@@ -121,20 +121,32 @@ export default function Rankings() {
             transition={{ duration: 0.5 }}
             className="max-w-6xl mx-auto pb-16"
         >
-            <div className="mb-8">
-                <motion.h1
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-3xl font-bold text-gray-800"
+            <div className="mb-10 text-center">
+                <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    className="mb-4"
                 >
-                    Top Influencer Rankings
+                    <div className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 p-3 rounded-2xl shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                </motion.div>
+                <motion.h1
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-4xl font-bold gradient-text mb-3"
+                >
+                    🏆 Top Influencer Rankings
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-gray-600 mt-2"
+                    className="text-gray-600 text-lg"
                 >
                     Our AI-powered analysis of the most credible influencers
                 </motion.p>
@@ -172,16 +184,24 @@ export default function Rankings() {
 
                 {/* Add refresh button */}
                 <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.3)" }}
                     whileTap={{ scale: 0.95 }}
                     onClick={refreshRankings}
                     disabled={loading}
-                    className="bg-blue-600 text-white px-3 py-1.5 rounded-md flex items-center text-sm font-medium hover:bg-blue-700 transition-colors disabled:opacity-50"
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg flex items-center text-sm font-bold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg disabled:opacity-50"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <motion.svg
+                        animate={loading ? { rotate: 360 } : {}}
+                        transition={loading ? { duration: 1, repeat: Infinity, ease: "linear" } : {}}
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    Refresh Rankings
+                    </motion.svg>
+                    {loading ? 'Refreshing...' : 'Refresh Rankings'}
                 </motion.button>
             </motion.div>
 
@@ -219,11 +239,11 @@ export default function Rankings() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="bg-white rounded-lg shadow-lg overflow-hidden"
+                    className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100"
                 >
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+                            <thead className="bg-gradient-to-r from-gray-50 to-blue-50">
                                 <tr>
                                     {["Rank", "Influencer", "Platform", "Niche", "Credibility", "Audience", "Actions"].map((header, index) => (
                                         <motion.th
@@ -251,17 +271,31 @@ export default function Rankings() {
                                     >
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
-                                                <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">
-                                                    {index + 1}
-                                                </div>
+                                                <motion.div
+                                                    initial={{ scale: 0 }}
+                                                    animate={{ scale: 1 }}
+                                                    transition={{ type: "spring", stiffness: 500, delay: index * 0.02 }}
+                                                    className={`${
+                                                        index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
+                                                        index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' :
+                                                        index === 2 ? 'bg-gradient-to-br from-orange-400 to-orange-600' :
+                                                        'bg-gradient-to-br from-blue-600 to-indigo-600'
+                                                    } text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shadow-lg`}
+                                                >
+                                                    {index === 0 ? '👑' : index + 1}
+                                                </motion.div>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
-                                                <div className="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">
+                                                <motion.div
+                                                    whileHover={{ rotate: 360 }}
+                                                    transition={{ duration: 0.5 }}
+                                                    className="bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold mr-3 text-lg border-2 border-blue-200 shadow-md"
+                                                >
                                                     {influencer.name.charAt(0)}
-                                                </div>
-                                                <div className="text-sm font-medium text-gray-900">{influencer.name}</div>
+                                                </motion.div>
+                                                <div className="text-sm font-bold text-gray-900">{influencer.name}</div>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
@@ -283,8 +317,8 @@ export default function Rankings() {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                                             <Link href={`/?name=${encodeURIComponent(influencer.name)}&platform=${encodeURIComponent(influencer.platform)}`}>
                                                 <motion.span
-                                                    className="inline-flex items-center px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors cursor-pointer"
-                                                    whileHover={{ scale: 1.05 }}
+                                                    className="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all cursor-pointer font-bold shadow-md"
+                                                    whileHover={{ scale: 1.08, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)" }}
                                                     whileTap={{ scale: 0.95 }}
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -303,14 +337,19 @@ export default function Rankings() {
                 </motion.div>
             )}
 
-            <motion.p
+            <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-sm text-gray-500 mt-6"
+                className="text-center mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100"
             >
-                Rankings are updated in real-time based on our AI analysis of engagement metrics, content quality, and audience authenticity.
-            </motion.p>
+                <p className="text-sm text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-2 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                    </svg>
+                    Rankings are updated in real-time based on our AI analysis of engagement metrics, content quality, and audience authenticity.
+                </p>
+            </motion.div>
         </motion.div>
     );
 }

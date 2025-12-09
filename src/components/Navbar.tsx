@@ -29,18 +29,18 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white text-gray-800 shadow-md' : 'bg-gradient-to-r from-blue-600 to-blue-800 text-white'
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md text-gray-800 shadow-lg border-b border-gray-100' : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-xl'
                 }`}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex-shrink-0">
-                            <Link href="/" className={`text-xl font-bold flex items-center transition-all ${scrolled ? 'text-blue-600' : 'text-white'
+                            <Link href="/" className={`text-xl font-bold flex items-center transition-all hover:scale-105 ${scrolled ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600' : 'text-white'
                                 }`}>
                                 <svg className="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                                     <path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span className="font-semibold tracking-tight">InfluencerIQ</span>
+                                <span className="font-bold tracking-tight">InfluencerIQ</span>
                             </Link>
                         </div>
 
